@@ -65,9 +65,9 @@ alert(res.data.message);
         navigate("/selector");
       }
     } catch (error) {
-      alert(error.response?.data?.message);
-      toast.error("Error al registrar ❌");
-    }
+  console.error("Error en registro:", error.response?.data || error.message);
+  toast.error(error.response?.data?.message || "Error al registrar ❌");
+}
   };
 
   return (
