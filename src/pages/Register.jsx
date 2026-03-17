@@ -65,7 +65,6 @@ alert(res.data.message);
         navigate("/selector");
       }
     } catch (error) {
-      alert(err.response?.data?.message);
       toast.error("Error al registrar ❌");
     }
   };
