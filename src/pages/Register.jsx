@@ -52,6 +52,7 @@ export default function Register() {
         email,
         password,
       });
+alert(res.data.message);
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("rol", res.data.usuario.rol);
@@ -64,6 +65,7 @@ export default function Register() {
         navigate("/selector");
       }
     } catch (error) {
+      alert(err.response?.data?.message);
       toast.error("Error al registrar ❌");
     }
   };
