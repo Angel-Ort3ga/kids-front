@@ -22,7 +22,7 @@ function JuegoColores() {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        const progresoRes = await axios.get("http://localhost:3000/api/progreso", {
+        const progresoRes = await api.get("/progreso", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -31,8 +31,8 @@ function JuegoColores() {
         setVidas(progresoRes.data.progresoPorCategoria.color.vidas);
         setCorrectos(progresoRes.data.progresoPorCategoria.color.correctos);
 
-        const contenidosRes = await axios.get(
-          `http://localhost:3000/api/contenido?tipo=color&nivel=${nivel}`,
+        const contenidosRes = await api.get(
+          `/contenido?tipo=color&nivel=${nivel}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -70,7 +70,7 @@ function JuegoColores() {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await axios.post("http://localhost:3000/api/progreso/subir-nivel",
+      const res = await api.post("/progreso/subir-nivel",
         { tipo: "color", correcto: nombre === colorActual.nombre },
         { headers: { Authorization: `Bearer ${token}` } }
       );

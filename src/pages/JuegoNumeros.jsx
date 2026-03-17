@@ -24,7 +24,7 @@ function JuegoNumeros() {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        const progresoRes = await axios.get("http://localhost:3000/api/progreso", {
+        const progresoRes = await api.get("/progreso", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -33,8 +33,8 @@ function JuegoNumeros() {
         setVidas(progresoRes.data.progresoPorCategoria.numero.vidas);
         setCorrectos(progresoRes.data.progresoPorCategoria.numero.correctos);
 
-        const contenidosRes = await axios.get(
-          `http://localhost:3000/api/contenido?tipo=numero&nivel=${nivel}`,
+        const contenidosRes = await api.get(
+          `/contenido?tipo=numero&nivel=${nivel}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -73,7 +73,7 @@ function JuegoNumeros() {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await axios.post("http://localhost:3000/api/progreso/subir-nivel",
+      const res = await api.post("/progreso/subir-nivel",
         { tipo: "numero", correcto: nombre === numeroActual.nombre },
         { headers: { Authorization: `Bearer ${token}` } }
       );

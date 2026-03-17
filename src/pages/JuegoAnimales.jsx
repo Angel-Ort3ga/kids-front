@@ -22,7 +22,7 @@ function JuegoAnimales() {
         const token = localStorage.getItem("token");
         if (!token) return;
 
-        const progresoRes = await axios.get("http://localhost:3000/api/progreso", {
+        const progresoRes = await api.get("/progreso", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -31,8 +31,8 @@ function JuegoAnimales() {
         setVidas(progresoRes.data.progresoPorCategoria.animal.vidas);
         setCorrectos(progresoRes.data.progresoPorCategoria.animal.correctos);
 
-        const contenidosRes = await axios.get(
-          `http://localhost:3000/api/contenido?tipo=animal&nivel=${nivel}`,
+        const contenidosRes = await api.get(
+          `/contenido?tipo=animal&nivel=${nivel}`,
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -63,7 +63,7 @@ function JuegoAnimales() {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await axios.post("http://localhost:3000/api/progreso/subir-nivel",
+      const res = await api.post("/progreso/subir-nivel",
         { tipo: "animal", correcto: nombre === animalActual.nombre },
         { headers: { Authorization: `Bearer ${token}` } }
       );
