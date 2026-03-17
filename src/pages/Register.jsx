@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -65,6 +65,7 @@ alert(res.data.message);
         navigate("/selector");
       }
     } catch (error) {
+      alert(error.response?.data?.message);
       toast.error("Error al registrar ❌");
     }
   };
