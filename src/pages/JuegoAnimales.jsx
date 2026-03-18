@@ -3,6 +3,10 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
 
+const api = axios.create({
+  baseURL: "https://kids-backend-1-b3qc.onrender.com/api"
+});
+
 function JuegoAnimales() {
   const [nivelActual, setNivelActual] = useState(1);
   const [animales, setAnimales] = useState([]);
